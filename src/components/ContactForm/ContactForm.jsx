@@ -1,16 +1,16 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import css from './ContactForm.module.css';
+import { useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
+import { addContact } from '../../redux/contactsSlice';
 
-// const FORM_INITIAL_VALUES = {
-//   name: '',
-//   number: '',
-//   favColor: '',
-//   description: '',
-// };
+import css from './ContactForm.module.css';
 
 const FORM_INITIAL_VALUES = {
   name: '',
+  number: '',
+  favColor: '',
+  description: '',
 };
 
 const FormSchema = Yup.object().shape({
@@ -18,25 +18,32 @@ const FormSchema = Yup.object().shape({
     .min(3, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-  // number: Yup.string()
-  //   .min(3, 'Too Short!')
-  //   .max(50, 'Too Long!')
-  //   .required('Required'),
-  // favColor: Yup.string()
-  //   .required('Favorite color is required!')
-  //   .oneOf(
-  //     ['red', 'green', 'blue'],
-  //     'Favorite color must be one of following: red, green, blue'
-  //   ),
-  // description: Yup.string()
-  //   .min(6, 'Too Short!')
-  //   .max(50, 'Too Long!')
-  //   .required('Required'),
+  number: Yup.string()
+    .min(3, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  favColor: Yup.string()
+    .required('Favorite color is required!')
+    .oneOf(
+      ['red', 'green', 'blue'],
+      'Favorite color must be one of following: red, green, blue'
+    ),
+  description: Yup.string()
+    .min(6, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
 });
 
-const ContactForm = ({ onAdd }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
   const handleSubmit = (values, actions) => {
-    onAdd(values);
+    dispatch(
+      addContact({
+        ...values,
+        id: nanoid(),
+      })
+    );
     actions.resetForm();
   };
 
@@ -58,7 +65,7 @@ const ContactForm = ({ onAdd }) => {
             />
           </label>
 
-          {/* <label className={css.formLabel}>
+          <label className={css.formLabel}>
             <span>Number:</span>
             <Field type="number" name="number" autoComplete="off" />
             <ErrorMessage
@@ -66,9 +73,9 @@ const ContactForm = ({ onAdd }) => {
               component="p"
               name="number"
             />
-          </label> */}
+          </label>
 
-          {/* <div>
+          <div>
             <span>Favorite color:</span>
             <div className={css.radioBtn}>
               <label className={css.formRadio}>
@@ -89,9 +96,9 @@ const ContactForm = ({ onAdd }) => {
                 name="favColor"
               />
             </div>
-          </div> */}
+          </div>
 
-          {/* <label className={css.formLabel}>
+          <label className={css.formLabel}>
             <span>Description:</span>
             <Field as="textarea" name="description" />
             <ErrorMessage
@@ -100,7 +107,7 @@ const ContactForm = ({ onAdd }) => {
               name="description"
               autoComplete="off"
             />
-          </label> */}
+          </label>
 
           <button type="submit" className={css.formAddBtn}>
             Submit
