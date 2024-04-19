@@ -5,7 +5,7 @@ import ContactForm from './components/ContactForm/ContactForm';
 function App() {
   return (
     <div>
-      <h1>Phonebook</h1>
+      <h2>Phonebook</h2>
       <ContactForm />
       <SearchBox />
       <ContactList />

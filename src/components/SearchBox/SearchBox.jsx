@@ -6,7 +6,7 @@ import css from './SearchBox.module.css';
 const SearchBox = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectNameFilter);
-  const visibleContacts = e => dispatch(changeFilter(e.target.value));
+  const onChangeFilter = e => dispatch(changeFilter(e.target.value));
 
   return (
     <div className={css.filterContainer}>
@@ -16,7 +16,7 @@ const SearchBox = () => {
         id="searchInput"
         placeholder="Search..."
         value={filter}
-        onChange={visibleContacts}
+        onChange={onChangeFilter}
       />
     </div>
   );

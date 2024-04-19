@@ -1,4 +1,4 @@
-.contactItem {
+/* .contactItem {
   padding: 12px;
   display: flex;
   flex-direction: row;
@@ -7,7 +7,7 @@
   border-radius: 4px;
   align-items: center;
   justify-content: center;
-}
+} */
 .contactItemTextContainer {
   font-size: 20px;
   font-weight: 600;
