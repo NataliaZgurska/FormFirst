@@ -3,13 +3,11 @@ import { INITIAL_STATE } from './contactsSlice';
 
 const filterSlice = createSlice({
   name: 'filters',
-  // initialState: INITIAL_STATE.filters,
-  initialState: INITIAL_STATE,
+  initialState: INITIAL_STATE.filters,
 
   reducers: {
     changeFilter(state, action) {
-      // state.name = action.payload;
-      state.filters = action.payload;
+      state.name = action.payload;
     },
   },
 });

@@ -3,13 +3,13 @@
   border: 2px solid gray;
   border-radius: 4px;
   padding: 12px;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .formAdd {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
   font-size: 20px;
   font-weight: 600;
 }

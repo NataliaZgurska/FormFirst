@@ -18,8 +18,7 @@ const ContactList = () => {
   const visibleContacts = useMemo(
     () =>
       contacts.filter(contact => {
-        //  return contact.name.toLowerCase().includes(filter.toLowerCase());
-        return contact.name.includes(filter);
+        return contact.name.toLowerCase().includes(filter.toLowerCase());
       }),
     [filter, contacts]
   );
@@ -27,17 +26,17 @@ const ContactList = () => {
   return (
     <div>
       <ul className={css.contactList}>
-        {contacts.map(contact => {
-          return (
-            <li className={css.contactItem} key={contact.id}>
-              <Contact contact={contact} />
-            </li>
-          );
-        })}
+        {Array.isArray(visibleContacts) &&
+          visibleContacts.map(contact => {
+            return (
+              <li className={css.contactItem} key={contact.id}>
+                <Contact contact={contact} />
+              </li>
+            );
+          })}
       </ul>
     </div>
   );
 };
 
 export default ContactList;
-// Array.isArray(visibleContacts) &&
